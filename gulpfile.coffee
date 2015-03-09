@@ -1,9 +1,9 @@
 # gulp
-awspublish = require('gulp-awspublish')
 buffer = require('vinyl-buffer')
 cached = require('gulp-cached')
 del = require('del')
 ecstatic = require('ecstatic')
+ghPages = require('gulp-gh-pages')
 gulp = require('gulp')
 gutil = require('gulp-util')
 http = require('http')
@@ -111,47 +111,6 @@ gulp.task 'default', (callback) ->
 # deploy
 # ============================================================================
 
-gulp.task 'dist:clean', (cb) ->
-  del paths.dist, cb
-
-gulp.task 'dist', ->
-  gulp.src(join(paths.tmp, '*.html'))
-    .pipe(usemin(
-      css: [minifyCss(), rev()]
-      js: [uglify(), rev()]
-      js1: [uglify(), rev()]
-      html: [ minifyHtml(empty: true) ]
-    ))
-    .pipe(gulp.dest(paths.dist))
-
-gulp.task 'content', ->
-  gulp.src(join(paths.tmp, 'content/**/*'))
-    .pipe(gulp.dest(join(paths.dist, 'content')))
-
-publisher = awspublish.create bucket: 'resources.hillgateconnect.com'
-gulp.task 'publish:bare', ->
-  gulp.src([
-    "#{paths.dist}/**/*.html"
-    "#{paths.dist}/**/*.md"
-  ])
-    .pipe(awspublish.gzip())
-    .pipe(publisher.publish('Cache-Control': 'max-age=600')) # 10 minutes
-    .pipe(awspublish.reporter())
-
-gulp.task 'publish:revved', ->
-  gulp.src([
-    "#{paths.dist}/**/*"
-    "!#{paths.dist}/**/*.html"
-    "!#{paths.dist}/**/*.md"
-  ])
-    .pipe(awspublish.gzip())
-    .pipe(publisher.publish('Cache-Control': 'max-age=315360000')) # 10 years
-    .pipe(awspublish.reporter())
-
-gulp.task 'deploy', (callback) ->
-  runSequence(
-    ['dist:clean']
-    ['dist', 'content']
-    ['publish:bare', 'publish:revved']
-    callback
-  )
+gulp.task 'deploy', ->
+  gulp.src(join(paths.tmp, '**/*'))
+    .pipe(ghPages())
