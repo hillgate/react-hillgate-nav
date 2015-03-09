@@ -1,0 +1,62 @@
+@import 'suitcss-components-arrange';
+@import './node_modules/drop/css/drop-theme-arrows-bounce';
+
+.Nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  min-height: 50px;
+  margin-bottom: 31px;
+  padding: 1em 0;
+  display: block;
+  font-family: var(--sans-serif);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.875em;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--light-gray);
+}
+.Nav a {
+  color: var(--gray);
+}
+.Nav a:focus, .Nav a:active, .Nav a:hover {
+  color: var(--dark-gray);
+}
+.Nav-Right {
+  margin-right: 1em;
+}
+.Nav-Right li {
+  float: right;
+  margin-left: 1em;
+  line-height: 38px;
+}
+
+.HeaderLogo {
+  margin-top: 5px;
+  height: 28px;
+}
+.Avatar {
+  border-radius: 100%;
+  /*border: 1px solid var(--gray);*/
+}
+
+
+.NavMessageItem {
+  min-width: 15em;
+  max-width: 20em;
+  text-transform: capitalize;
+  border-bottom: 1px solid var(--light-gray);
+  padding: 0.3em 0;
+}
+.NavMessageItem--Header {
+  font-weight: 800;
+}
+.NavMessageItem--Date {
+  float: right;
+}
+.NavMessageItem--Body {
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

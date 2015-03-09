@@ -1,0 +1,43 @@
+:root {
+
+  --blue: #425d87; /* Primary Brand */
+
+  --white: #ffffff;
+  --not-white: #ECF0F1; /* CLOUDS */
+  --light-gray: #BDC3C7; /* SILVER */
+  --gray: #95A5A6; /* CONCRETE */
+  --dark-gray: #7F8C8D; /* ASBESTOS */
+  --black: #262727; /* METALSMITH */
+
+  --success: #2ECC71; /* EMERALD */
+  --success-dark: #27AE60; /* NEPHRITIS */
+  --info: #3498DB; /* PETER RIVER */
+  --info-dark: #2980B9; /* BELIZE HOLE */
+  --warning: #E67E22; /* CARROT */
+  --warning-dark: #D35400; /* PUMPKIN */
+  --danger: #E74C3C; /* ALIZARIN */
+  --dander-dark: #C0392B; /* POMEGRANATE */
+  --admin: #9B59B6; /* AMETHYST */
+  --admin-dark: #8E44AD; /* WISTERIA */
+
+  /* OTHER FLAT UI COLORS*/
+  --turquoise: #1ABC9C; /* TURQUOISE */
+  --turquoise-dark: #16A085; /* GREEN SEA */
+  --asphalt: #34495E; /* WET ASPHALT */
+  --midnight: #2C3E50; /* MIDNIGHT BLUE */
+  --yellow: #F1C40F; /* SUN FLOWER */
+  --yellow-dark: #F39C12; /* ORANGE */
+
+  --serif: 'Stempel Garamond W01',Georgia,Times,serif;
+  --sans-serif: 'Avenir Next W01', Helvetica, Arial, sans-serif;
+
+  --m: 1.25;
+  --much-smaller: calc(1em / var(m) / var(m));
+  --smaller: calc(1em / var(m));
+  --larger: calc(1em * var(m));
+  --much-larger: calc(1em * var(m) * var(m));
+}
+
+@custom-media --sm-viewport (min-width:320px) and (max-width:640px);
+@custom-media --md-viewport (min-width:640px) and (max-width:960px);
+@custom-media --lg-viewport (min-width:960px);
