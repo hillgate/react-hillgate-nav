@@ -1,0 +1,33 @@
+.Drop {
+  position: relative;
+}
+.DropdownMenu {
+  position: absolute;
+  top: 53px;
+  right: 0;
+  background: white;
+  border: 1px solid var(--light-gray);
+  max-width: 30rem;
+  min-width: 14rem;
+  border-top: 0;
+  padding: 1rem;
+}
+.DropdownMenu li {
+  float: none;
+  margin: 0;
+  line-height: 1.75rem;
+}
+.DropdownMenu a {
+  color: var(--gray);
+  font-family: var(--sans-serif);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+li.DropdownMenu-Divider {
+  height: 1px;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  background-color: var(--gray);
+}

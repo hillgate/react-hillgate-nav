@@ -26,7 +26,7 @@
 .Nav-Right {
   margin-right: 1em;
 }
-.Nav-Right li {
+.Nav-Right > div > ul > li {
   float: right;
   margin-left: 1em;
   line-height: 38px;
@@ -43,13 +43,13 @@
 
 
 .NavMessageItem {
-  min-width: 15em;
-  max-width: 20em;
+  width: 25em;
   text-transform: capitalize;
-  border-bottom: 1px solid var(--light-gray);
+  border-bottom: 1px solid var(--gray);
   padding: 0.3em 0;
 }
 .NavMessageItem--Header {
+  margin-bottom: 0.5em;
   font-weight: 800;
 }
 .NavMessageItem--Date {
@@ -59,4 +59,5 @@
   font-style: italic;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }

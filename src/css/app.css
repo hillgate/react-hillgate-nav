@@ -2,6 +2,7 @@
 @import 'suitcss-base';
 @import 'suitcss-utils';
 @import './src/css/button';
+@import './src/css/drop';
 
 * {
   box-sizing: border-box;
@@ -43,19 +44,15 @@ a {
   }
 }
 
-@import './index.css';
+.Badge {
+  background-color: var(--blue);
+  border-radius: 1rem;
+  padding: 2px .5rem;
+  line-height: 2;
+  color: white;
+  height: 25px;
+  text-align: center;
+  margin-left: .5rem;
+}
 
-.DropdownMenu a {
-  color: var(--gray);
-  font-family: var(--sans-serif);
-  text-transform: uppercase;
-  font-weight: 600;
-  font-size: 0.875rem;
-  line-height: 1.4;
-}
-.DropdownMenu-Divider {
-  height: 1px;
-  margin: 0.5rem 0;
-  overflow: hidden;
-  background-color: var(--gray);
-}
+@import './index.css';

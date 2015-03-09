@@ -3,9 +3,11 @@ var moment = require('moment');
 var React = require('react');
 var request = require('superagent')
 
+var Drop = require('./src/js/drop.jsx');
+
 var cdnUrl = 'http://d34i3ar4bnnqdn.cloudfront.net';
-var marketingUrl = 'http://localhost:5000';
-var apiUrl = 'http://localhost:5000';
+var marketingUrl = 'https://www.hillgateconnect.com';
+var apiUrl = 'https://hillgate-beast-staging.herokuapp.com';
 
 var logoImg = '/img/hillgate-gray-100.png';
 var defaultAvatar = 'https://res.cloudinary.com/wemeetup/image/upload/v1364306561/user_uwcrts.jpg';
@@ -117,16 +119,16 @@ var NavRightLoggedOut = React.createClass({
         </ul>
         <ul className="u-lg-hidden">
           <li>
-            <DropComponent position="bottom right">
-              <a className="Drop-Target Button Button--Nav Button--Round">
+            <Drop>
+              <a className="js-dropTarget Button Button--Nav Button--Round">
                 <i className="fa fa-bars"></i>
               </a>
-              <div className="Drop-Content u-hidden">
+              <div className="js-dropContent">
                 <ul className="DropdownMenu">
                   {hiddenLinks}
                 </ul>
               </div>
-            </DropComponent>
+            </Drop>
           </li>
         </ul>
       </div>
@@ -142,7 +144,7 @@ var NavRightLoggedIn = React.createClass({
       <div className="Nav-Right-LoggedIn u-cf">
         <ul>
           <NavUserItem profilePicture={data.user.profilePicture}/>
-          <NavMessageItem unreadMessages={data.user.unreadMessages}/>
+          <NavMessagesItem unreadMessages={data.user.unreadMessages}/>
           {adminDrop}
         </ul>
       </div>
@@ -150,76 +152,70 @@ var NavRightLoggedIn = React.createClass({
   }
 });
 
-var NavMessageItem = React.createClass({
+var NavMessagesItem = React.createClass({
   render: function() {
 
-    // // Unread message count goes in a badge
-    // var badge = null;
-    // if (this.props.unreadMessages.length > 0) {
-    //   badge = <span className="Badge">{this.props.unreadMessages.length}</span>
-    // };
-    //
-    // // Unread messages are listed in a dropbox with a link to all messages.
-    // var messageItems = this.props.unreadMessages.map(function (message) {
-    //   return (
-    //     <NavMessageItem message={message} />
-    //   );
-    // });
-    // messageItems.push([(<li><a href="#">View All Messages</a></li>)]);
-    // <i className="fa fa-lg fa-envelope-o"></i>
-    // {badge}
-    // </a>
-    // <ul className="dropdown-menu" role="menu">
-    //   {messageItems}
-    // </ul>
+    // Unread message count goes in a badge
+    var badge = null;
+    if (this.props.unreadMessages.length > 0) {
+      badge = <span className="Badge">{this.props.unreadMessages.length}</span>
+    };
+
+    // Unread messages are listed in a dropbox with a link to all messages.
+    var messageItems = this.props.unreadMessages.map(function (message) {
+      return (
+        <NavMessageItem message={message} />
+      );
+    });
+
     return (
       <li>
-        <DropComponent position="bottom right">
-          <a className="Drop-Target Button Button--Nav Button--Round">
+        <Drop>
+          <a className="js-dropTarget Button Button--Nav">
             <i className="fa fa-lg fa-envelope-o"></i>
+            {badge}
           </a>
-          <div className="Drop-Content u-hidden">
+          <div className="js-dropContent">
             <ul className="DropdownMenu">
-
-              <li className="DropdownMenu-Divider"></li>
+              {messageItems}
               <ListItem
-                key="logout1"
-                url="/logout"
-                label="Sign out"
-                iconName="power-off"
+                key="viewAll"
+                url="/messages"
+                label="View all messages"
+                iconName="list"
                 />
             </ul>
           </div>
-        </DropComponent>
+        </Drop>
       </li>
     );
   }
 });
 
-// var NavMessageItem = React.createClass({
-//   render: function() {
-//     var formattedDate = moment(this.props.message.sentDate).format('ll');
-//     return (
-//       <li>
-//         <a href={"/messages/" + this.props.message.senderId}>
-//           <div className="NavMessageItem">
-//             <div className="NavMessageItem--Header">
-//               {this.props.message.senderDisplayName}
-//               <div className="NavMessageItem--Date">{formattedDate}</div>
-//             </div>
-//             <div className="NavMessageItem--Body">
-//               <span className="fa-stack fa-lg">
-//                 <i className="fa fa-circle fa-stack-2x"></i>
-//                 <i className="fa fa-quote-right fa-stack-1x fa-inverse"></i>
-//               </span>{' '}
-//               {this.props.message.body}
-//             </div>
-//           </div>
-//         </a>
-//       </li>
-//     );
-//   }
-// });
+var NavMessageItem = React.createClass({
+  render: function() {
+    var formattedDate = moment(this.props.message.sentDate).format('ll');
+    return (
+      <li>
+        <a href={"/messages/" + this.props.message.senderId}>
+          <div className="NavMessageItem">
+            <div className="NavMessageItem--Header">
+              {this.props.message.senderDisplayName}
+              <div className="NavMessageItem--Date">{formattedDate}</div>
+            </div>
+            <div className="NavMessageItem--Body">
+              <span className="fa-stack fa">
+                <i className="fa fa-circle fa-stack-2x"></i>
+                <i className="fa fa-quote-right fa-stack-1x fa-inverse"></i>
+              </span>{' '}
+              {this.props.message.body}
+            </div>
+          </div>
+        </a>
+      </li>
+    );
+  }
+});
 
 var NavUserItem = React.createClass({
   render: function() {
@@ -236,11 +232,11 @@ var NavUserItem = React.createClass({
     });
     return (
       <li>
-        <DropComponent position="bottom right">
-          <a className="Drop-Target Button Button--Nav Button--Round">
+        <Drop>
+          <a className="js-dropTarget Button Button--Nav Button--Round">
             <img className="Avatar" src={avatarUrl} />
           </a>
-          <div className="Drop-Content u-hidden">
+          <div className="js-dropContent">
             <ul className="DropdownMenu">
               {links}
               <li className="DropdownMenu-Divider"></li>
@@ -252,7 +248,7 @@ var NavUserItem = React.createClass({
                 />
             </ul>
           </div>
-        </DropComponent>
+        </Drop>
       </li>
     );
   }
@@ -270,16 +266,16 @@ var NavAdminItem = React.createClass({
     });
     return (
       <li>
-        <DropComponent position="bottom right">
-          <a className="Drop-Target Button Button--Nav Button--Admin">
+        <Drop>
+          <a className="js-dropTarget Button Button--Nav Button--Admin">
           <i className="fa fa-glass"></i> Admin
           </a>
-          <div className="Drop-Content u-hidden">
+          <div className="js-dropContent">
             <ul className="DropdownMenu">
               {links}
             </ul>
           </div>
-        </DropComponent>
+        </Drop>
       </li>
     );
   }
@@ -301,20 +297,6 @@ var ListItem = React.createClass({
         </a>
       </li>
     )
-  }
-});
-
-var DropComponent = React.createClass({
-  componentDidMount: function() {
-    drop = new Drop({
-      target: this.getDOMNode().querySelector('.Drop-Target'),
-      content: this.getDOMNode().querySelector('.Drop-Content').innerHTML,
-      classes: 'drop-theme-arrows-bounce',
-      position: this.props.position
-    });
-  },
-  render: function() {
-    return(<div className="Drop">{this.props.children}</div>);
   }
 });
 

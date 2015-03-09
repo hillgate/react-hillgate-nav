@@ -32,12 +32,12 @@
   border-color: var(--dark-gray);
 }
 .Button--Admin {
-  color: var(--admin);
-  border-color: var(--admin);
+  color: var(--admin) !important;
+  border-color: var(--admin) !important;
 }
 .Button--Admin:focus, .Button--Admin:active, .Button--Admin:hover {
-  color: var(--admin-dark );
-  border-color: var(--admin-dark);
+  color: var(--admin-dark ) !important;
+  border-color: var(--admin-dark) !important;
 }
 .Button--Nav {
   margin-top: -4px;
