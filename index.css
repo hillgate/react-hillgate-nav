@@ -1,5 +1,4 @@
 @import 'suitcss-components-arrange';
-@import './node_modules/drop/css/drop-theme-arrows-bounce';
 
 .Nav {
   position: fixed;

@@ -37,8 +37,6 @@ paths.static = [
   join(paths.src, '**/*')
   join('!', paths.src, '**/*.css')
   join('!', paths.src, '**/*.js*')
-  './node_modules/drop/drop.js'
-  './node_modules/drop/css/drop-theme-arrows-bounce.css'
 ]
 paths.css = [
   'index.css'
